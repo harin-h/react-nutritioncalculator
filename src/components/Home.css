@@ -1,0 +1,796 @@
+.Home {
+    font-size: 20px;
+}
+
+.ShortCut {
+    position: absolute;
+    right: 5px;
+    top: 72px;
+    background: #5072A7;
+}
+
+.ShortCut label {
+    font-size: 15px;
+    background: #5072A7;
+}
+
+.ShortCut label.Profile {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+    cursor: pointer;
+}
+
+.ShortCut label.Profile:active {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: #ffffff;
+    cursor: pointer;
+}
+
+.ShortCut label.LogOut {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+    cursor: pointer;
+}
+
+.ShortCut label.LogOut:active {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: #ffffff;
+    cursor: pointer;
+}
+
+.MenuList {
+    width: 900px;
+    height: 400px;
+    text-align: center;
+    margin-inline: 20px;
+    align-items: center;
+    display: inline-block;
+}
+
+.MenuList header {
+    margin-block: 20px;
+}
+
+.MenuList .Search {
+    margin-bottom: 20px;
+}
+
+.MenuList .Search *{
+    display: inline;
+    margin-inline: 5px;
+}
+
+.MenuList .Search input[type='text'] {
+    border: 2px solid #5072A7;
+    border-radius: 30px;
+    padding-inline: 15px;
+    padding-block: 5px;
+    font-size: 20px;
+    width: 270px;
+    &::placeholder{
+        opacity: 0;
+    }
+}
+
+.MenuList .SearchMenu input:focus + label{
+    position: absolute;
+    left: 112px;
+    top: 155px;
+    transition: 0.5s;
+}
+
+.MenuList .SearchMenu input:not(:focus):placeholder-shown + label{
+    position: absolute;
+    top: 173px;
+    left: 163px;
+    transition: 0.5s;
+}
+
+.MenuList .SearchMenu input:not(:focus) + label{
+    position: absolute;
+    left: 112px;
+    top: 155px;
+    transition: 0.5s;
+}
+
+.MenuList .SearchCreator input:focus + label{
+    position: absolute;
+    left: 402px;
+    top: 155px;
+    transition: 0.5s;
+}
+
+.MenuList .SearchCreator input:not(:focus):placeholder-shown + label{
+    position: absolute;
+    top: 173px;
+    left: 447px;
+    transition: 0.5s;
+}
+
+.MenuList .SearchCreator input:not(:focus) + label{
+    position: absolute;
+    left: 402px;
+    top: 155px;
+    transition: 0.5s;
+}
+
+.MenuList .MyMenu {
+    border: 2px solid #5072A7;
+    border-radius: 30px;
+    width: 60px;
+    height: 30px;
+    display: inline-block;
+    top: +9px;
+    position: relative;
+}
+
+.MenuList .MyMenu input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    margin: 0;
+}
+
+.MenuList .MyMenu input:not(:checked) {
+    + .indicator{
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        position: absolute;
+        left: -6px;
+        top: -1px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        color: #5072A7;
+        background-color: #5072A7;
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 1;
+    }
+
+    ~ .background{
+        border-radius: 30px;
+        position: absolute;
+        left: -5.8px;
+        top: 0px;
+        width: 101.9%;
+        height: 100%;
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 0;
+    }
+}
+
+.MenuList .MyMenu input:checked {
+    + .indicator{
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        position: absolute;
+        left: 25px;
+        top: -1px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        color: #5072A7;
+        background-color: #5072A7;
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 1;
+    }
+
+    ~ .background{
+        border-radius: 30px;
+        position: absolute;
+        left: -5.8px;
+        top: 0px;
+        width: 101.9%;
+        height: 100%;
+        display: block;
+        background-color: rgb(81, 202, 81);
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 0;
+    }
+}
+
+.MenuList table.HeadTable {
+
+    border-collapse: collapse;
+    width: 920px;
+    table-layout: fixed;
+
+    & th {
+        width: 100px;
+        color: aliceblue;
+        background-color: #5072A7;
+        height: 50px;
+    }
+    & th:first-child {
+        width: 200px;
+        border-top-left-radius: 20px;
+    }
+    & th:nth-child(8) {
+        width: 50px;
+    }
+    & th:last-child {
+        width: 50px;
+        border-top-right-radius: 20px;
+    }
+}
+
+.MenuList .Scroll {
+    display: block;
+    height: 180px;
+    overflow: hidden;
+    width: 920px;
+    overflow-y: scroll;
+}
+
+.MenuList .Scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.MenuList .Scroll::-webkit-scrollbar-track {
+    background: rgb(231, 231, 231);
+}
+
+.MenuList .Scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(172, 172, 172);
+    border-radius: 20px;
+}
+
+.MenuList table.BodyTable {
+
+    height: 200px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-collapse: collapse;
+    width: 920px;
+    table-layout: fixed;
+
+    & tr:nth-child(odd) td {
+        background-color: #ffffff;
+        & span {
+            background-color: #ffffff;
+            font-weight: lighter;
+        }
+    }
+
+    & tr:nth-child(even) td {
+        background-color: #dbe7fc;
+        & span {
+            background-color: #dbe7fc;
+            font-weight: lighter;
+        }
+    }
+
+    & td {
+        width: 100px;
+        height: 50px;
+        font-weight: lighter;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+    & td:hover {
+        overflow: visible;
+        position: relative;
+    }
+    & td:hover span{
+        display: inline-block;
+    }
+    & td:first-child {
+        width: 200px;
+    }
+    & td:nth-child(8) {
+        width: 50px;
+    }
+    & td:last-child {
+        width: 50px;
+    }
+    & .button {
+        display: inline-block;
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        background-color: #5072A7;
+        color: #ffffff;
+    }
+
+    & .button:hover {
+        cursor: pointer;
+    }
+    & .button:active {
+        display: inline-block;
+        border-radius: 50px;
+        width: 23px;
+        height: 23px;
+        text-align: center;
+        background-color: #2f4974;
+        color: #ffffff;
+    }
+}
+
+.MenuList table.CloseTable {
+    display: block;
+    height: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-collapse: collapse;
+    width: 920px;
+    table-layout: fixed;
+    background-color: #5072A7;
+    border-top: 2px solid rgb(199, 198, 198);
+}
+
+.MenuList .AddMenu {
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 15px;
+    background-color: #5072A7;
+    color: #ffffff;
+    width: 150px;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding-block: 5px;
+}
+
+.MenuList .AddMenu:hover {
+    cursor: pointer;
+}
+
+.MenuList .AddMenu:active {
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 15px;
+    background-color: #2f4974;
+    color: #ffffff;
+    width: 145px;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding-block: 3px;
+}
+
+.ChosenList {
+    width: 900px;
+    height: 400px;
+    margin-inline: 40px;
+    margin-block: 20px;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+}
+
+.ChosenList header {
+    margin-bottom: 20px;
+}
+
+.ChosenList table.HeadTable {
+
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-left: 120px;
+
+    & th {
+        width: 100px;
+        color: aliceblue;
+        background-color: #5072A7;
+        height: 50px;
+    }
+    & th:first-child {
+        width: 300px;
+        border-top-left-radius: 20px;
+    }
+    & th:last-child {
+        border-top-right-radius: 20px;
+    }
+}
+
+.ChosenList .Scroll {
+    margin-left: 120px;
+    display: block;
+    max-height: 210px;
+    overflow: hidden;
+    width: 700px;
+    overflow-y: scroll;
+}
+
+.ChosenList .Scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ChosenList .Scroll::-webkit-scrollbar-track {
+    background: rgb(231, 231, 231);
+}
+
+.ChosenList .Scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(172, 172, 172);
+    border-radius: 20px;
+}
+
+.ChosenList table.BodyTable {
+
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 700px;
+
+    & tr:nth-child(odd) td {
+        background-color: #ffffff;
+        & span {
+            background-color: #ffffff;
+            font-weight: lighter;
+        }
+    }
+
+    & tr:nth-child(even) td {
+        background-color: #dbe7fc;
+        & span {
+            background-color: #dbe7fc;
+            font-weight: lighter;
+        }
+    }
+
+    & td {
+        width: 100px;
+        height: 50px;
+        font-weight: lighter;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    & td:hover {
+        overflow: visible;
+        position: relative;
+    }
+    & td:hover span{
+        background-color: #ffffff;
+        background: #ffffff;
+        display: inline-block;
+    }
+    & td:first-child {
+        width: 300px;
+    }
+}
+
+.ChosenList table.TotalTable {
+
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-left: 120px;
+    border-top: 2px solid rgb(199, 198, 198);
+
+    & th {
+        width: 100px;
+        color: aliceblue;
+        background-color: #5072A7;
+        height: 50px;
+    }
+    & th:first-child {
+        width: 300px;
+        border-bottom-left-radius: 20px;
+    }
+    & th:last-child {
+        border-bottom-right-radius: 20px;
+    }
+}
+
+.ChosenList .SaveToFav {
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 15px;
+    background-color: #5072A7;
+    color: #ffffff;
+    width: 200px;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding-block: 5px;
+}
+
+.ChosenList .SaveToFav:hover {
+    cursor: pointer;
+}
+
+.ChosenList .SaveToFav:active {
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 15px;
+    background-color: #2f4974;
+    color: #ffffff;
+    width: 190px;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding-block: 3px;
+}
+
+.FavoriteList {
+    width: 900px;
+    height: 300px;
+    margin-inline: 20px;
+    margin-block: 20px;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    top: 540px;
+}
+
+.FavoriteList header {
+    margin-bottom: 20px;
+}
+
+.FavoriteList .SearchFavList input[type='text'] {
+    border: 2px solid #5072A7;
+    border-radius: 30px;
+    padding-inline: 15px;
+    padding-block: 5px;
+    font-size: 20px;
+    width: 270px;
+    &::placeholder{
+        opacity: 0;
+    }
+}
+
+.FavoriteList .SearchFavList input:focus + label{
+    position: absolute;
+    top: 32px;
+    left: 330px;
+    transition: 0.5s;
+}
+
+.FavoriteList .SearchFavList input:not(:focus):placeholder-shown + label{
+    position: absolute;
+    top: 50px;
+    left: 350px;
+    transition: 0.5s;
+}
+
+.FavoriteList .SearchFavList input:not(:focus) + label{
+    position: absolute;
+    top: 32px;
+    left: 330px;
+    transition: 0.5s;
+}
+
+.FavoriteList table.HeadTable {
+
+    border-collapse: collapse;
+    width: 920px;
+    table-layout: fixed;
+    margin-top: 20px;
+
+    & th {
+        color: aliceblue;
+        background-color: #5072A7;
+        height: 50px;
+    }
+    & th:first-child {
+        width: 200px;
+        border-top-left-radius: 20px;
+    }
+    & th:nth-child(2) {
+        width: 300px;
+    }
+    & th:last-child {
+        border-top-right-radius: 20px;
+    }
+}
+
+.FavoriteList .Scroll {
+    display: block;
+    max-height: 180px;
+    overflow: hidden;
+    width: 920px;
+    overflow-y: scroll;
+}
+
+.FavoriteList .Scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.FavoriteList .Scroll::-webkit-scrollbar-track {
+    background: rgb(231, 231, 231);
+}
+
+.FavoriteList .Scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(172, 172, 172);
+    border-radius: 20px;
+}
+
+.FavoriteList table.BodyTable {
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-collapse: collapse;
+    width: 920px;
+    table-layout: fixed;
+
+    & tr:nth-child(odd) td {
+        background-color: #ffffff;
+        & span {
+            background-color: #ffffff;
+            font-weight: lighter;
+        }
+    }
+
+    & tr:nth-child(even) td {
+        background-color: #dbe7fc;
+        & span {
+            background-color: #dbe7fc;
+            font-weight: lighter;
+        }
+    }
+
+    & td {
+        height: 50px;
+        font-weight: lighter;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    & td:hover {
+        overflow: visible;
+        position: relative;
+    }
+    & td:hover span{
+        display: inline-block;
+    }
+    & td:first-child {
+        width: 200px;
+    }
+    & td:nth-child(2) {
+        width: 300px;
+    }
+    & .button {
+        display: inline-block;
+        border-radius: 20px;
+        font-size: 15px;
+        width: 80px;
+        height: 25px;
+        text-align: center;
+        background-color: #5072A7;
+        color: #ffffff;
+    }
+
+    & .button:hover {
+        cursor: pointer;
+    }
+    & .button:active {
+        display: inline-block;
+        border-radius: 50px;
+        font-size: 14px;
+        width: 70px;
+        height: 23px;
+        text-align: center;
+        background-color: #2f4974;
+        color: #ffffff;
+    }
+}
+
+.FavoriteList table.CloseTable {
+    display: block;
+    height: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-collapse: collapse;
+    width: 920px;
+    table-layout: fixed;
+    background-color: #5072A7;
+    border-top: 2px solid rgb(199, 198, 198);
+}
+
+.Summary {
+    width: 900px;
+    height: 400px;
+    margin-inline: 20px;
+    margin-block: 20px;
+    top: 540px;
+    left: 960px;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+}
+
+.Summary header {
+    margin-bottom: 20px;
+}
+
+.Summary .Weight * {
+    margin-inline: 5px;
+}
+
+.Summary .Weight input{
+    border: 2px solid #5072A7;
+    border-radius: 30px;
+    padding-inline: 15px;
+    padding-block: 5px;
+    font-size: 20px;
+    width: 100px;
+    text-align: center;
+}
+
+.Summary .Weight input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.Summary table.HeadTable {
+
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 20px;
+    margin-left: 60px;
+
+    & th {
+        color: aliceblue;
+        background-color: #5072A7;
+        height: 50px;
+        width: 200px;
+    }
+    & th:first-child {
+        border-top-left-radius: 20px;
+    }
+    & th:last-child {
+        border-top-right-radius: 20px;
+    }
+
+}
+
+.Summary table.BodyTable {
+
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-left: 60px;
+
+    & tr:nth-child(odd) td {
+        background-color: #ffffff;
+        & input {
+            background-color: #ffffff;
+        }
+    }
+
+    & tr:nth-child(even) td {
+        background-color: #dbe7fc;
+        & input {
+            background-color: #dbe7fc;
+        }
+    }
+
+    & td {
+        width: 200px;
+        height: 50px;
+    }
+
+    & input {
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        padding-inline: 15px;
+        padding-block: 5px;
+        font-size: 20px;
+        width: 100px;
+        text-align: center;
+    }
+}
+
+.Summary table.CloseTable {
+    display: block;
+    height: 20px;
+    margin-left: 60px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-collapse: collapse;
+    width: 800px;
+    table-layout: fixed;
+    background-color: #5072A7;
+    border-top: 2px solid rgb(199, 198, 198);
+}

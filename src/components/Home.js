@@ -29,7 +29,7 @@ function Home(props) {
                     <div className='Search'>
                         <div className='SearchMenu'>
                             <input type='text' placeholder='sss'/>
-                            <label>Search Menu</label>
+                            {/* <label>Search Menu</label> */}
                         </div>
                         <div className='SearchCreator'>
                             <input type='text' placeholder='sss'/>

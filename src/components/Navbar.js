@@ -1,52 +1,76 @@
 import './Navbar.css'
 import logo from '../app-logo.png'
-import {Link} from "react-router-dom" 
+import { Link } from "react-router-dom" 
 import DataContext from '../data/DataContext'
 import { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import axios from 'axios'
+
+const NavigatePage = (props) => {
+
+    console.log('Nested Component-Navigate Page - starting')
+    console.log('userId = '+ props.userId)
+    console.log('userDetail.UserName = '+ props.userDetail.UserName)
+    console.log('location.pathname = '+ props.location)
+
+    const clickLogOut = () => {
+        props.setUserId('-')
+    }
+
+    if(props.userId === '-') {
+        return (
+            <div className='NavBar'>
+                <Link to="/react-nutritioncalculator/login">
+                    Log-In
+                </Link>
+            </div>
+        )
+    } else {
+        if (props.location === '/react-nutritioncalculator') {
+            return (
+                <div className='NavBar'>
+                    <label>{props.userDetail.UserName}</label>
+                    <label> | </label>
+                    <Link to="/react-nutritioncalculator/profile" className='Link'>
+                        Profile Page
+                    </Link>
+                    <label> | </label>
+                    <Link to="/react-nutritioncalculator/login" className='Link' onClick={clickLogOut}>
+                        Log-Out
+                    </Link>
+                </div>
+            )
+        } else if (props.location === '/react-nutritioncalculator/profile') {
+            return (
+                <div className='NavBar'>
+                    <label>{props.userDetail.UserName}</label>
+                    <label> | </label>
+                    <Link to="/react-nutritioncalculator" className='Link'>
+                        Calculation Page
+                    </Link>
+                    <label> | </label>
+                    <Link to="/react-nutritioncalculator/login" className='Link' onClick={clickLogOut}>
+                        Log-Out
+                    </Link>
+                </div>
+            )
+        }
+    }
+}
 
 function Navbar() {
-    const {userId, setUserId} = useContext(DataContext)
+
+    console.log("Rendering Component - Navbar")
+
+    const { userId, setUserId, userDetail, setUserDetail } = useContext(DataContext)
     const location = useLocation()
-    // const isLogin =()=>{
-    //     if (userId === '-') {
-    //         return false
-    //     } else {
-    //         return true
-    //     }
-    // }
-    // const shortCut =()=>{
-    //     if ( location == '/') {
-    //         if (isLogin) {
-    //             <div className='ShortCut'>
-    //                 <label></label>
-    //             </div>
-    //         }
-    //     }
-    // }
-    // async function getMenu() {
-    //     return await axios.get('http://localhost:3030/menu/')
-    // }
-    // const [acct] = Promise.all([getMenu()]);
-    async function getUser() {
-        try {
-          const response = await axios.get('http://localhost:3030/menu/');
-          console.log(response);
-          console.log(response.data);
-          return response
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    const re = getUser().data
-    console.log(location.pathname)
+    
     return (
         <>
             <div className="logo">
-                <Link to="/">
+                <Link to="/react-nutritioncalculator">
                     <img src={logo} alt='Logo' width={100} height={100}/>
                 </Link>
+                <NavigatePage userId={userId} setUserId={setUserId} userDetail={userDetail} setUserDetail={setUserDetail} location={location.pathname}/>
             </div>
         </>
     )

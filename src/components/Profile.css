@@ -1,0 +1,322 @@
+.ProfilePage {
+    & header {
+        margin-block: 20px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+.ProfilePage {
+    & .Profile {
+        height: 490px;
+    }
+    & #alert {
+        text-align: center;
+        color: red;
+        font-size: 12px;
+        margin-bottom: 10px;
+        pointer-events: none;
+        visibility: hidden;
+    }
+    & #submitNewDetail {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #5072A7;
+        color: #ffffff;
+        width: 120px;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 5px;
+        padding-inline: 15px;
+        margin: auto;
+        text-align: center;
+    }
+    & #submitNewDetail:active {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #3f5981;
+        color: #ffffff;
+        width: 115px;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 4px;
+        padding-inline: 10px;
+    } 
+}
+
+.ProfilePage .ProfileDetail {
+    margin-left: 500px;
+
+    & * {
+        margin-block: 10px;
+        margin-right: 5px;
+    }
+    & .button {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #5072A7;
+        color: #ffffff;
+        width: 120px;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 5px;
+        padding-inline: 15px;
+        margin: auto;
+    }
+    & .button:active {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #3f5981;
+        color: #ffffff;
+        width: 115px;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 4px;
+        padding-inline: 10px;
+    }
+    & input {
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        padding-inline: 15px;
+        padding-block: 10px;
+        width: 200px;
+        font-size: 15px;
+        cursor: pointer;
+        &:focus{
+            cursor: text;
+        }
+        &#newUserName {
+            cursor: text;
+        }
+        &.error {
+            animation: shake 0.2s ease-in-out 0s 2;
+            box-shadow: 0 0 0.5em red;
+        }
+        &::placeholder{
+            opacity: 0;
+        }
+        + label {
+            pointer-events: none;
+        }
+    }
+    & .Suggestion {
+        position: absolute;
+        top: 230px;
+        left: 1000px;
+        border: 2px solid #5072A7;
+        border-radius: 20px;
+        background-color: #ffffff;
+        height: 195px;
+        text-align: center;
+        display: block;
+        height: 250px;
+        width: 600px;
+        & *{
+            background-color: #ffffff;
+        }
+        & div.outer {
+            margin: 0px;
+            display: block;
+            & div.inner {
+                margin-block: 0px;
+                margin-inline: 20px;
+                display: inline-block;
+                & * {
+                    display: block;
+                }
+                & label {
+                    width: 150px;
+                }
+                & .button {
+                    background-color: #5072A7; 
+                } 
+                & .button:active {
+                    padding-block: 5px;
+                    background-color: #3f5981; 
+                }
+            }
+        }
+        & label.labelSuggestion {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+        }
+    }
+    & input + label#setNewWeight{
+        position: absolute;
+        top: 254px;
+        left: 640px;
+        transition: 0.5s;
+    }
+    
+    & input:not(:focus):placeholder-shown + label#setNewWeight{
+        position: absolute;
+        top: 275px;
+        left: 665px;
+        transition: 0.5s;
+    }
+
+    & input + label#setNewProtein{
+        position: absolute;
+        top: 327px;
+        left: 639px;
+        transition: 0.5s;
+    }
+    
+    & input:not(:focus):placeholder-shown + label#setNewProtein{
+        position: absolute;
+        top: 346px;
+        left: 662px;
+        transition: 0.5s;
+    }
+
+    & input + label#setNewFat{
+        position: absolute;
+        top: 398px;
+        left: 600px;
+        transition: 0.5s;
+    }
+    
+    & input:not(:focus):placeholder-shown + label#setNewFat{
+        position: absolute;
+        top: 419px;
+        left: 635px;
+        transition: 0.5s;
+    }
+
+    & input + label#setNewCarb{
+        position: absolute;
+        top: 472px;
+        left: 620px;
+        transition: 0.5s;
+    }
+    
+    & input:not(:focus):placeholder-shown + label#setNewCarb{
+        position: absolute;
+        top: 490px;
+        left: 653px;
+        transition: 0.5s;
+    }
+}
+
+.ProfilePage .MyMenu table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+    font-size: 20px;
+    & th {
+        color: aliceblue;
+        background-color: #5072A7;
+        width: 150px;
+        height: 50px;
+    }
+    & th:first-child {
+        border-top-left-radius: 20px;
+        width: 300px;
+    }
+    & th:last-child {
+        border-top-right-radius: 20px;
+    }
+    & td {
+        width: 150px;
+        height: 50px;
+    }
+    & td:first-child {
+        width: 300px;
+    }
+    & tbody tr:nth-child(odd) td{
+        background-color: #ffffff;
+        font-weight: lighter;
+        & input {
+            background-color: #ffffff;
+        }
+    }
+    & tbody tr:nth-child(even) td{
+        background-color: #dbe7fc;
+        font-weight: lighter;
+        & input {
+            background-color: #dbe7fc;
+        }
+    }
+    & tfoot td {
+        background-color: #5072A7;
+        height: 20px;
+        &:first-child {
+            border-bottom-left-radius: 20px;
+        }
+        &:last-child {
+            border-bottom-right-radius: 20px;
+        }
+    }
+    & .button {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #5072A7;
+        color: #ffffff;
+        width: 120px;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 5px;
+        padding-inline: 15px;
+        margin: auto;
+    }
+    & .button:active {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #3f5981;
+        color: #ffffff;
+        width: 115px;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 4px;
+        padding-inline: 10px;
+    }
+    & input {
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        padding-inline: 15px;
+        padding-block: 5px;
+        width: 130px;
+        font-size: 15px;
+    }
+    & input[type='text'] {
+        width: 250px;
+    }
+}
+
+.ProfilePage .MyMenu .Scroll {
+
+    display: block;
+    max-height: 150px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1050px;
+
+    & ~table {
+        border-block: 2px solid rgb(199, 198, 198);
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: rgb(231, 231, 231);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(172, 172, 172);
+        border-radius: 20px;
+    }
+}
+
+@keyframes shake {
+    0% { margin-left: 0rem; }
+    25% { margin-left: 0.5rem; }
+    75% { margin-left: -0.5rem; }
+    100% { margin-left: 0rem; }
+}

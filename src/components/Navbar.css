@@ -1,10 +1,27 @@
 .logo {
     background-color: #5072A7;
     text-align: center;
-    height:100px
+    height:100px;
+    width: 100%;
 }
 
 
 .logo img {
     background-color: #5072A7;
+}
+
+.NavBar {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 75px;
+    
+    & * {
+        background-color: #5072A7;
+        color: aliceblue;
+    }
+
+    & *.Link:active {
+        color: rgb(0, 0, 0);
+    }
 }

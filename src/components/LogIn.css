@@ -1,0 +1,96 @@
+.LogIn {
+    & .LogInDetail{
+        height: 250px;
+        & *:first-child{
+            margin-top: 50px;
+        }
+        & *{
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+        }
+        & label {
+            text-align: center;
+        }
+        & label#wrongKey {
+            font-size: 12px;
+            color: red;
+            margin-block: 10px;
+            visibility: hidden;
+        }
+        & div {
+            text-align: center;
+            width: 200px;
+        }
+        & input {
+            border: 2px solid #5072A7;
+            border-radius: 30px;
+            padding-inline: 15px;
+            padding-block: 10px;
+            width: 300px;
+            font-size: 15px;
+            &:focus{
+                cursor: text;
+            }
+            &::placeholder{
+                opacity: 0;
+            }
+        }
+        & .button1 {
+            cursor: pointer;
+            font-size: 15px;
+            background-color: #5072A7;
+            color: #ffffff;
+            width: 200px;
+            white-space: nowrap;
+            border-radius: 100px;
+            padding-block: 5px;
+            padding-inline: 15px;
+            margin: auto;
+        }
+        & .button1:active {
+            cursor: pointer;
+            font-size: 15px;
+            background-color: #3f5981;
+            color: #ffffff;
+            width: 195px;
+            white-space: nowrap;
+            border-radius: 100px;
+            padding-block: 4px;
+            padding-inline: 10px;
+        }
+    }
+    #seperateButton {
+        width: 300px;
+        height: 2px;
+        background-color: #3f5981;
+        margin: auto;
+    }
+    & .button2 {
+        text-align: center;
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #ffffff;
+        color: #5072A7;
+        width: 200px;
+        white-space: nowrap;
+        border-radius: 100px;
+        border: 2px solid #5072A7;
+        padding-block: 5px;
+        padding-inline: 15px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    & .button2:active {
+        cursor: pointer;
+        font-size: 15px;
+        background-color: #b6b6b6;
+        color: #3f5981;
+        width: 195px;
+        border: 2px solid #3f5981;
+        white-space: nowrap;
+        border-radius: 100px;
+        padding-block: 4px;
+        padding-inline: 10px;
+    }
+}

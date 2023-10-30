@@ -70,7 +70,7 @@
     padding-inline: 15px;
     padding-block: 5px;
     font-size: 20px;
-    width: 270px;
+    width: 250px;
     &::placeholder{
         opacity: 0;
     }
@@ -78,42 +78,42 @@
 
 .MenuList .SearchMenu input:focus + label{
     position: absolute;
-    left: 112px;
+    left: 55px;
     top: 155px;
     transition: 0.5s;
 }
 
 .MenuList .SearchMenu input:not(:focus):placeholder-shown + label{
     position: absolute;
+    left: 105px;
     top: 173px;
-    left: 163px;
     transition: 0.5s;
 }
 
 .MenuList .SearchMenu input:not(:focus) + label{
     position: absolute;
-    left: 112px;
+    left: 55px;
     top: 155px;
     transition: 0.5s;
 }
 
 .MenuList .SearchCreator input:focus + label{
     position: absolute;
-    left: 402px;
+    left: 325px;
     top: 155px;
     transition: 0.5s;
 }
 
 .MenuList .SearchCreator input:not(:focus):placeholder-shown + label{
     position: absolute;
+    left: 365px;
     top: 173px;
-    left: 447px;
     transition: 0.5s;
 }
 
 .MenuList .SearchCreator input:not(:focus) + label{
     position: absolute;
-    left: 402px;
+    left: 325px;
     top: 155px;
     transition: 0.5s;
 }
@@ -170,6 +170,89 @@
 }
 
 .MenuList .MyMenu input:checked {
+    + .indicator{
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        position: absolute;
+        left: 25px;
+        top: -1px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        color: #5072A7;
+        background-color: #5072A7;
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 1;
+    }
+
+    ~ .background{
+        border-radius: 30px;
+        position: absolute;
+        left: -5.8px;
+        top: 0px;
+        width: 101.9%;
+        height: 100%;
+        display: block;
+        background-color: rgb(81, 202, 81);
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 0;
+    }
+}
+
+.MenuList .MyFav {
+    border: 2px solid #5072A7;
+    border-radius: 30px;
+    width: 60px;
+    height: 30px;
+    display: inline-block;
+    top: +9px;
+    position: relative;
+}
+
+.MenuList .MyFav input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    margin: 0;
+}
+
+.MenuList .MyFav input:not(:checked) {
+    + .indicator{
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        position: absolute;
+        left: -6px;
+        top: -1px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        color: #5072A7;
+        background-color: #5072A7;
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 1;
+    }
+
+    ~ .background{
+        border-radius: 30px;
+        position: absolute;
+        left: -5.8px;
+        top: 0px;
+        width: 101.9%;
+        height: 100%;
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.5s;
+        z-index: 0;
+    }
+}
+
+.MenuList .MyFav input:checked {
     + .indicator{
         border: 2px solid #5072A7;
         border-radius: 30px;
@@ -627,7 +710,7 @@
 
     & tr:nth-child(odd) td {
         background-color: #ffffff;
-        & span {
+        & span,input {
             background-color: #ffffff;
             font-weight: lighter;
         }
@@ -635,7 +718,7 @@
 
     & tr:nth-child(even) td {
         background-color: #dbe7fc;
-        & span {
+        & span,input {
             background-color: #dbe7fc;
             font-weight: lighter;
         }
@@ -684,6 +767,15 @@
         text-align: center;
         background-color: #2f4974;
         color: #ffffff;
+    }
+    & input {
+        border: 2px solid #5072A7;
+        border-radius: 30px;
+        padding-inline: 15px;
+        padding-block: 5px;
+        font-size: 20px;
+        width: 180px;
+        font-weight: lighter;
     }
 }
 

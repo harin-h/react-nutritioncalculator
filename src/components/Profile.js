@@ -300,10 +300,10 @@ function Profile() {
                                 {menues.filter(element=>element.Creator===userDetail.UserName).map(element=>{
                                     return (
                                         <tr key={element.Id}>
-                                            <td>{element.Name}</td>
-                                            <td>{element.Protein + ' g.'}</td>
-                                            <td>{element.Fat + ' g.'}</td>
-                                            <td>{element.Carb + ' g.'}</td>
+                                            <td><span>{element.Name}</span></td>
+                                            <td><span>{element.Protein + ' g.'}</span></td>
+                                            <td><span>{element.Fat + ' g.'}</span></td>
+                                            <td><span>{element.Carb + ' g.'}</span></td>
                                             <td>{element.Like}</td>
                                             <td><div className='button' onClick={event=>clickDeleteMenu(element.Id)}>Delete</div></td>
                                         </tr>

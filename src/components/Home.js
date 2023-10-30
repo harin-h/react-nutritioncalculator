@@ -16,12 +16,14 @@ function Home() {
     const [searchMenuBar,setSearchMenu] = useState("")
     const [searchCreatorBar,setSearchCreator] = useState("")
     const [myMenuCheck,setMyMenuCheck] = useState(false)
+    const [myFavCheck,setMyFavCheck] = useState(false)
 
     const [chosenMenues,setChosenMenues] = useState([])
 
     const [favoriteLists,setFavoriteLists] = useState([])
     const [showFavoriteLists,setShowFavoriteLists] = useState([])
     const [searchFavoriteListBar,setSearchFavoriteListBar] = useState("")
+    const [favoriteListName,setFavoriteListName] = useState("")
 
     const [weight,setWeight] = useState(userId!=='-'?userDetail.Weight:0)
     const [proteinNeed,setProteinNeed] = useState(userId!=='-'?userDetail.Protein:0)
@@ -71,6 +73,19 @@ function Home() {
         }
     }
 
+    async function apiUpdateFavoriteList(favoriteListId,data) {
+        try {
+            await console.log("API-apiUpdateFavoriteList - starting")
+            const response = await axios.put("http://localhost:3030/fav_list/"+favoriteListId,data);
+            await console.log("response of apiUpdateFavoriteList")
+            await console.log(response)
+            console.log("API-apiUpdateFavoriteList - finished")
+        } catch(error) {
+            console.log("API-apiUpdateFavoriteList - failed")
+            console.log(error)
+        }
+    }
+
     async function apiDeleteFavoriteList(favoriteListId) {
         try {
             await console.log("API-apiDeleteFavoriteList - starting")
@@ -110,11 +125,15 @@ function Home() {
         }
         let tempMyMenuCheck = menues
         if (myMenuCheck !== false) {
-            let tempFavoriteMenues = userDetail.FavoriteMenu.split(",")
-            tempMyMenuCheck = tempMyMenuCheck.filter(element=>tempFavoriteMenues.includes((element.Id).toString()))
+            tempMyMenuCheck = tempMyMenuCheck.filter(element=>userDetail.UserName === element.Creator)
         }
-        setShowMenues((tempSearchMenuBar.filter(element1=>tempSearchCreatorBar.some(element2=>element1.Id===element2.Id))).filter(element1=>tempMyMenuCheck.some(element2=>element1.Id===element2.Id)))
-    },[menues,searchMenuBar,searchCreatorBar,myMenuCheck])
+        let tempMyFavCheck = menues
+        if (myFavCheck !== false) {
+            let tempFavoriteMenues = userDetail.FavoriteMenu.split(",")
+            tempMyFavCheck = tempMyFavCheck.filter(element=>tempFavoriteMenues.includes((element.Id).toString()))
+        }
+        setShowMenues((tempSearchMenuBar.filter(element1=>tempSearchCreatorBar.some(element2=>element1.Id===element2.Id))).filter(element1=>tempMyMenuCheck.some(element2=>element1.Id===element2.Id)).filter(element1=>tempMyFavCheck.some(element2=>element1.Id===element2.Id)))
+    },[menues,searchMenuBar,searchCreatorBar,myMenuCheck,myFavCheck])
 
     useEffect(()=>{
         let tempSearchFavoriteListBar = favoriteLists
@@ -123,6 +142,16 @@ function Home() {
         }
         setShowFavoriteLists(tempSearchFavoriteListBar)
     },[favoriteLists,searchFavoriteListBar])
+
+    useEffect(()=>{
+        if (favoriteLists.length>0 && document.getElementById('favoriteList'+favoriteLists[0].ID) !== null) {
+            for(let i=0;i<favoriteLists.length&&favoriteLists.length>0;i++) {
+                if (document.getElementById('favoriteList'+favoriteLists[i].ID) !== null) {
+                    document.getElementById('favoriteList'+favoriteLists[i].ID).value = favoriteLists[i].Name
+                }
+            }
+        }
+    },[favoriteLists])
 
     const inputSearchMenuBar = (event) => {
         setSearchMenu(event.target.value)
@@ -137,6 +166,14 @@ function Home() {
             setMyMenuCheck(false)
         } else {
             setMyMenuCheck(true)
+        }
+    }
+
+    const checkMyFavCheck = () => {
+        if (myFavCheck) {
+            setMyFavCheck(false)
+        } else {
+            setMyFavCheck(true)
         }
     }
 
@@ -224,6 +261,21 @@ function Home() {
         setSearchFavoriteListBar(event.target.value)
     }
 
+    const inputFavoriteListName = (event) => {
+        setFavoriteListName(event.target.value)
+    }
+
+    const focusFavoriteListName = (favoriteListId) => {
+        setFavoriteListName((showFavoriteLists.filter(element=>element.ID===favoriteListId)[0]).Name)
+    }
+
+    async function checkChangingName(favoriteListId) {
+        if (favoriteListName !== showFavoriteLists.filter(element=>element.ID===favoriteListId)[0].Name) {
+            await apiUpdateFavoriteList(favoriteListId,{Name:favoriteListName})
+            await apiGetFavoriteLists() 
+        }
+    }
+
     const clickApplyFavoriteList = (favoriteListId) => {
         let tempList = favoriteLists.filter(element=>element.ID===favoriteListId)[0].List.split(",")
         let tempChosenMenues = []
@@ -308,6 +360,7 @@ function Home() {
             document.getElementById('fatNeed').value = tempFat
             document.getElementById('carbNeed').value = tempCarb
         } else {
+            document.getElementById('checkbox').checked = false
             document.getElementById('weight').focus()
             document.getElementById('weight').classList.add('error')
         }
@@ -328,6 +381,12 @@ function Home() {
                         </div>
                         <label>My Menu</label>
                         <div className="MyMenu" onClick={checkMyMenuCheck}>
+                            <input className="checkbox" type="checkbox"/>
+                            <div className="indicator"></div>
+                            <div className="background"></div>
+                        </div>
+                        <label>My Fav</label>
+                        <div className="MyFav" onClick={checkMyFavCheck}>
                             <input className="checkbox" type="checkbox"/>
                             <div className="indicator"></div>
                             <div className="background"></div>
@@ -467,11 +526,11 @@ function Home() {
                                 {showFavoriteLists.map((element)=>{
                                     return (
                                         <tr key={element.ID}>
-                                            <td>{element.Name}</td>
-                                            <td>{element.Menues}</td>
-                                            <td>{element.Protein + " g."}</td>
-                                            <td>{element.Fat + " g."}</td>
-                                            <td>{element.Carb + " g."}</td>
+                                            <td><input type='text' id={'favoriteList'+element.ID} onChange={inputFavoriteListName} onFocus={event=>focusFavoriteListName(element.ID)} onBlur={event=>checkChangingName(element.ID)}/></td>
+                                            <td><span>{element.Menues}</span></td>
+                                            <td><span>{element.Protein + " g."}</span></td>
+                                            <td><span>{element.Fat + " g."}</span></td>
+                                            <td><span>{element.Carb + " g."}</span></td>
                                             <td><div className="button" onClick={event=>clickApplyFavoriteList(element.ID)}>Apply</div></td>
                                             <td><div className="button" onClick={event=>clickDeleteFavoriteList(element.ID)}>Delete</div></td>
                                         </tr>
@@ -545,7 +604,7 @@ function Home() {
                         </tfoot>
                     </table>
                     <div className='SuggestionNutrition'>
-                        <input className="checkbox" type="checkbox"/>
+                        <input className="checkbox" type="checkbox" id='checkbox'/>
                         <div className='indicator'>?</div>
                         <div className='SuggestionArrow'></div>
                         <div className='SuggestionDetail'>

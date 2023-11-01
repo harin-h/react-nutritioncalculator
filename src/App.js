@@ -20,7 +20,7 @@ function App() {
   async function apiGetUserDetail(userId) {
     try {
       await console.log('Api-apiGetUserDetail - starting')
-      const response = await axios.get('http://localhost:3030/user/user_id/'+userId);
+      const response = await axios.get('https://go-nutritioncalculator.onrender.com/user/user_id/'+userId);
       await console.log('response.data of apiGetUserDetail')
       await console.log(response.data)
       await console.log('Api-apiGetUserDetail - finished')
@@ -34,7 +34,7 @@ function App() {
   async function apiGetMenues() {
     try {
         await console.log('API-apiGetMenues - starting')
-        const response = await axios.get('http://localhost:3030/menu/');
+        const response = await axios.get('https://go-nutritioncalculator.onrender.com/menu/');
         await console.log('response.data of apiGetMenues')
         await console.log(response.data)
         await setMenues(response.data)

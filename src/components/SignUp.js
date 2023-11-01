@@ -37,7 +37,7 @@ function SignUp() {
     async function apiGetUserByUsername(username) {
         try {
             await console.log("API-apiGetUserByUsername - starting")
-            const response = await axios.get("http://localhost:3030/user/user_name/"+username);
+            const response = await axios.get("https://go-nutritioncalculator.onrender.com/user/user_name/"+username);
             await console.log("response of apiGetUserByUsername")
             await console.log(response.data)
             await console.log("API-apiGetUserByUsername - finished")
@@ -66,13 +66,13 @@ function SignUp() {
             await console.log(responseUserId)
             const responseUsername = await apiGetUserByUsername(username)
             await console.log(responseUsername)
-            if(await responseUserId['ID'] !== 0) {
+            if(await responseUserId['UserId'] !== '') {
                 document.getElementById('alert').innerHTML = "user id is used already"
                 document.getElementById('alert').style.visibility = "visible"
                 setUserId('-')
                 document.getElementById('inputUserId').focus()
                 document.getElementById('inputUserId').classList.add('error')
-            } else if (await responseUsername['ID'] !== 0) {
+            } else if (await responseUsername['UserId'] !== '') {
                 document.getElementById('alert').innerHTML = "username is used already"
                 document.getElementById('alert').style.visibility = "visible"
                 setUsername('-')
@@ -142,7 +142,7 @@ function SignUp() {
     async function clickCompleteSignUp() {
         try {
             await console.log("API-apiCreateUser - starting")
-            const response = await axios.post("http://localhost:3030/user/",{'UserId':userId,'Password':password,'UserName':username,'Weight':weight,'Protein':protein,'Fat':fat,'Carb':carb});
+            const response = await axios.post("https://go-nutritioncalculator.onrender.com/user/",{'UserId':userId,'Password':password,'UserName':username,'Weight':weight,'Protein':protein,'Fat':fat,'Carb':carb});
             await console.log("response of apiCreateUser")
             await console.log(response)
             await console.log("API-apiCreateUser - finished")

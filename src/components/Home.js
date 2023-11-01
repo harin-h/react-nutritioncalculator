@@ -33,10 +33,10 @@ function Home() {
     async function apiUpdateFavoriteMenu(menuId) {
         try {
             await console.log("API-apiUpdateFavoriteMenu - starting")
-            const responseUpdateLikeMenu = await axios.put("http://localhost:3030/menu/like/"+menuId+"/"+userId);
+            const responseUpdateLikeMenu = await axios.put("https://go-nutritioncalculator.onrender.com/menu/like/"+menuId+"/"+userId);
             await console.log("response of apiUpdateFavoriteMenu - Updating Like Menu")
             await console.log(responseUpdateLikeMenu)
-            const responseUpdateFavortieMenu = await axios.put("http://localhost:3030/user/fav_menu/"+userId+"/"+menuId);
+            const responseUpdateFavortieMenu = await axios.put("https://go-nutritioncalculator.onrender.com/user/fav_menu/"+userId+"/"+menuId);
             await console.log("response of apiUpdateFavoriteMenu - Updating Favorite Menu")
             await console.log(responseUpdateFavortieMenu)
             console.log("API-apiUpdateFavoriteMenu - finished")
@@ -49,7 +49,7 @@ function Home() {
     async function apiGetFavoriteLists() {
         try {
             await console.log("API-apiGetFavoriteLists - starting")
-            const response = await axios.get("http://localhost:3030/fav_list/" + userId);
+            const response = await axios.get("https://go-nutritioncalculator.onrender.com/fav_list/" + userId);
             await console.log("response.data of apiGetFavoriteLists")
             await console.log(response.data)
             await setFavoriteLists(response.data)
@@ -63,7 +63,7 @@ function Home() {
     async function apiCreateFavoriteList(data) {
         try {
             await console.log("API-apiCreateFavoriteList - starting")
-            const response = await axios.post("http://localhost:3030/fav_list/",data);
+            const response = await axios.post("https://go-nutritioncalculator.onrender.com/fav_list/",data);
             await console.log("response of apiCreateFavoriteList")
             await console.log(response)
             console.log("API-apiCreateFavoriteList - finished")
@@ -76,7 +76,7 @@ function Home() {
     async function apiUpdateFavoriteList(favoriteListId,data) {
         try {
             await console.log("API-apiUpdateFavoriteList - starting")
-            const response = await axios.put("http://localhost:3030/fav_list/"+favoriteListId,data);
+            const response = await axios.put("https://go-nutritioncalculator.onrender.com/fav_list/"+favoriteListId,data);
             await console.log("response of apiUpdateFavoriteList")
             await console.log(response)
             console.log("API-apiUpdateFavoriteList - finished")
@@ -86,15 +86,15 @@ function Home() {
         }
     }
 
-    async function apiDeleteFavoriteList(favoriteListId) {
+    async function apIdeleteFavoriteList(favoriteListId) {
         try {
-            await console.log("API-apiDeleteFavoriteList - starting")
-            const response = await axios.delete("http://localhost:3030/fav_list/"+favoriteListId);
-            await console.log("response of apiDeleteFavoriteList")
+            await console.log("API-apIdeleteFavoriteList - starting")
+            const response = await axios.delete("https://go-nutritioncalculator.onrender.com/fav_list/"+favoriteListId);
+            await console.log("response of apIdeleteFavoriteList")
             await console.log(response)
-            console.log("API-apiDeleteFavoriteList - finished")
+            console.log("API-apIdeleteFavoriteList - finished")
         } catch(error) {
-            console.log("API-apiDeleteFavoriteList - failed")
+            console.log("API-apIdeleteFavoriteList - failed")
             console.log(error)
         }
     }
@@ -111,7 +111,9 @@ function Home() {
     },[userDetail])
 
     useEffect(()=>{
-        apiGetFavoriteLists()
+        if (userId !== "-") {
+            apiGetFavoriteLists()
+        }
     },[userId])
 
     useEffect(()=>{
@@ -144,10 +146,10 @@ function Home() {
     },[favoriteLists,searchFavoriteListBar])
 
     useEffect(()=>{
-        if (favoriteLists.length>0 && document.getElementById('favoriteList'+favoriteLists[0].ID) !== null) {
+        if (favoriteLists?.length>0 && document.getElementById('favoriteList'+favoriteLists[0].Id) !== null) {
             for(let i=0;i<favoriteLists.length&&favoriteLists.length>0;i++) {
-                if (document.getElementById('favoriteList'+favoriteLists[i].ID) !== null) {
-                    document.getElementById('favoriteList'+favoriteLists[i].ID).value = favoriteLists[i].Name
+                if (document.getElementById('favoriteList'+favoriteLists[i].Id) !== null) {
+                    document.getElementById('favoriteList'+favoriteLists[i].Id).value = favoriteLists[i].Name
                 }
             }
         }
@@ -266,18 +268,18 @@ function Home() {
     }
 
     const focusFavoriteListName = (favoriteListId) => {
-        setFavoriteListName((showFavoriteLists.filter(element=>element.ID===favoriteListId)[0]).Name)
+        setFavoriteListName((showFavoriteLists.filter(element=>element.Id===favoriteListId)[0]).Name)
     }
 
     async function checkChangingName(favoriteListId) {
-        if (favoriteListName !== showFavoriteLists.filter(element=>element.ID===favoriteListId)[0].Name) {
+        if (favoriteListName !== showFavoriteLists.filter(element=>element.Id===favoriteListId)[0].Name && favoriteListName !== "") {
             await apiUpdateFavoriteList(favoriteListId,{Name:favoriteListName})
             await apiGetFavoriteLists() 
         }
     }
 
     const clickApplyFavoriteList = (favoriteListId) => {
-        let tempList = favoriteLists.filter(element=>element.ID===favoriteListId)[0].List.split(",")
+        let tempList = favoriteLists.filter(element=>element.Id===favoriteListId)[0].List.split(",")
         let tempChosenMenues = []
         for (let i=0 ; i<tempList.length ; i++) {
             const tempMenuId = parseInt(tempList[i])
@@ -308,7 +310,7 @@ function Home() {
     }
 
     async function clickDeleteFavoriteList(favoriteListId) {
-        await apiDeleteFavoriteList(favoriteListId)
+        await apIdeleteFavoriteList(favoriteListId)
         await apiGetFavoriteLists()
     }
 
@@ -523,16 +525,16 @@ function Home() {
                     <div className="Scroll">
                         <table className="BodyTable">
                             <tbody>
-                                {showFavoriteLists.map((element)=>{
+                                {showFavoriteLists?.map((element)=>{
                                     return (
-                                        <tr key={element.ID}>
-                                            <td><input type='text' id={'favoriteList'+element.ID} onChange={inputFavoriteListName} onFocus={event=>focusFavoriteListName(element.ID)} onBlur={event=>checkChangingName(element.ID)}/></td>
+                                        <tr key={element.Id}>
+                                            <td><input type='text' id={'favoriteList'+element.Id} onChange={inputFavoriteListName} onFocus={event=>focusFavoriteListName(element.Id)} onBlur={event=>checkChangingName(element.Id)}/></td>
                                             <td><span>{element.Menues}</span></td>
                                             <td><span>{element.Protein + " g."}</span></td>
                                             <td><span>{element.Fat + " g."}</span></td>
                                             <td><span>{element.Carb + " g."}</span></td>
-                                            <td><div className="button" onClick={event=>clickApplyFavoriteList(element.ID)}>Apply</div></td>
-                                            <td><div className="button" onClick={event=>clickDeleteFavoriteList(element.ID)}>Delete</div></td>
+                                            <td><div className="button" onClick={event=>clickApplyFavoriteList(element.Id)}>Apply</div></td>
+                                            <td><div className="button" onClick={event=>clickDeleteFavoriteList(element.Id)}>Delete</div></td>
                                         </tr>
                                     )
                                 })}

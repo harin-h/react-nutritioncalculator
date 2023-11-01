@@ -16,7 +16,7 @@ function LogIn() {
         try {
             await console.log("API-apiLogin - starting")
             await console.log("data - ",data)
-            const response = await axios.post('http://localhost:3030/user/login',data);
+            const response = await axios.post('https://go-nutritioncalculator.onrender.com/user/login',data);
             await console.log("response of apiLogin")
             await console.log(response)
             await console.log("API-apiLogin - finished")

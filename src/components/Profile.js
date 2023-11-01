@@ -22,7 +22,7 @@ function Profile() {
     async function apiGetUserByUsername() {
         try {
             await console.log("API-apiGetUserByUsername - starting")
-            const response = await axios.get("http://localhost:3030/user/user_name/"+newUserName);
+            const response = await axios.get("https://go-nutritioncalculator.onrender.com/user/user_name/"+newUserName);
             await console.log("response of apiGetUserByUsername")
             await console.log(response.data)
             await console.log("API-apiGetUserByUsername - finished")
@@ -36,7 +36,7 @@ function Profile() {
     async function apiUpdateUserDetail(UpdateUserDetail) {
         try {
             await console.log("API-apiUpdateUserDetail - starting")
-            const response = await axios.put("http://localhost:3030/user/goal/"+userId,UpdateUserDetail);
+            const response = await axios.put("https://go-nutritioncalculator.onrender.com/user/goal/"+userId,UpdateUserDetail);
             await console.log("response of apiUpdateUserDetail")
             await console.log(response)
             console.log("API-apiUpdateUserDetail - finished")
@@ -49,7 +49,7 @@ function Profile() {
     async function apiDeleteMenu(menuId) {
         try {
             await console.log("API-apiDeleteMenu - starting")
-            const response = await axios.delete("http://localhost:3030/menu/"+menuId);
+            const response = await axios.delete("https://go-nutritioncalculator.onrender.com/menu/"+menuId);
             await console.log("response of apiDeleteMenu")
             await console.log(response)
             console.log("API-apiDeleteMenu - finished")
@@ -62,7 +62,7 @@ function Profile() {
     async function apiCreateMenu(menuDetail) {
         try {
             await console.log("API-apiCreateMenu - starting")
-            const response = await axios.post("http://localhost:3030/menu/",menuDetail);
+            const response = await axios.post("https://go-nutritioncalculator.onrender.com/menu/",menuDetail);
             await console.log("response of apiCreateMenu")
             await console.log(response)
             console.log("API-apiCreateMenu - finished")
@@ -114,7 +114,7 @@ function Profile() {
                 document.getElementById('alert').style.pointerEvents = 'auto'
                 document.getElementById('newUserName').focus()
                 document.getElementById('newUserName').classList.add('error')
-            } else if ((await apiGetUserByUsername()).ID === 0) {
+            } else if ((await apiGetUserByUsername()).UserId === '') {
                 tempDetail['UserName'] = newUserName
                 await apiUpdateUserDetail(tempDetail)
                 await setApiUserDetail(userId)
@@ -297,7 +297,7 @@ function Profile() {
                     <div className='Scroll'>
                         <table>
                             <tbody>
-                                {menues.filter(element=>element.Creator===userDetail.UserName).map(element=>{
+                                {menues?.filter(element=>element.Creator===userDetail.UserName).map(element=>{
                                     return (
                                         <tr key={element.Id}>
                                             <td><span>{element.Name}</span></td>

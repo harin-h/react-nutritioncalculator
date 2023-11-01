@@ -19,36 +19,36 @@ const NavigatePage = (props) => {
     if(props.userId === '-') {
         return (
             <div className='NavBar'>
-                <Link to="/react-nutritioncalculator/login">
+                <Link to="/login">
                     Log-In
                 </Link>
             </div>
         )
     } else {
-        if (props.location === '/react-nutritioncalculator') {
+        if (props.location === '/') {
             return (
                 <div className='NavBar'>
                     <label>{props.userDetail.UserName}</label>
                     <label> | </label>
-                    <Link to="/react-nutritioncalculator/profile" className='Link'>
+                    <Link to="/profile" className='Link'>
                         Profile Page
                     </Link>
                     <label> | </label>
-                    <Link to="/react-nutritioncalculator/login" className='Link' onClick={clickLogOut}>
+                    <Link to="/login" className='Link' onClick={clickLogOut}>
                         Log-Out
                     </Link>
                 </div>
             )
-        } else if (props.location === '/react-nutritioncalculator/profile') {
+        } else if (props.location === '/profile') {
             return (
                 <div className='NavBar'>
                     <label>{props.userDetail.UserName}</label>
                     <label> | </label>
-                    <Link to="/react-nutritioncalculator" className='Link'>
+                    <Link to="/" className='Link'>
                         Calculation Page
                     </Link>
                     <label> | </label>
-                    <Link to="/react-nutritioncalculator/login" className='Link' onClick={clickLogOut}>
+                    <Link to="/login" className='Link' onClick={clickLogOut}>
                         Log-Out
                     </Link>
                 </div>
@@ -67,7 +67,7 @@ function Navbar() {
     return (
         <>
             <div className="logo">
-                <Link to="/react-nutritioncalculator">
+                <Link to="/">
                     <img src={logo} alt='Logo' width={100} height={100}/>
                 </Link>
                 <NavigatePage userId={userId} setUserId={setUserId} userDetail={userDetail} setUserDetail={setUserDetail} location={location.pathname}/>

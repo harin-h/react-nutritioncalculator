@@ -40,7 +40,7 @@ function LogIn() {
         await console.log(response)
         if (await response['IsPasswordCorrect'] === true) {
             await setUserId(logInUserId)
-            await navigate('/react-nutritioncalculator/profile')
+            await navigate('/profile')
         } else {
             document.getElementById('wrongKey').style.visibility = await "visible"
         }
@@ -53,7 +53,7 @@ function LogIn() {
     }
 
     const clickSignUp = () => {
-        navigate('/react-nutritioncalculator/signup')
+        navigate('/signup')
     }
 
     return (

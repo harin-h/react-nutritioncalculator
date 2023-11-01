@@ -64,10 +64,10 @@ function App() {
       <DataContext.Provider value={{userId,setUserId,userDetail,apiGetUserDetail,setApiUserDetail,menues,apiGetMenues}}>
         <Navbar/>
         <Routes>
-          <Route path='/react-nutritioncalculator' element={<Home/>}/>
-          <Route path='/react-nutritioncalculator/profile' element={<Profile/>}/>
-          <Route path='/react-nutritioncalculator/login' element={<LogIn/>}/>
-          <Route path='/react-nutritioncalculator/signup' element={<SignUp/>}/>
+          <Route path='' element={<Home/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/login' element={<LogIn/>}/>
+          <Route path='/signup' element={<SignUp/>}/>
         </Routes>
       </DataContext.Provider>
     </>

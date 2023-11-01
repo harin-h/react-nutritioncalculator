@@ -448,7 +448,7 @@ function Home() {
                             </tr>
                         </tfoot>
                     </table>
-                    <Link to={userId==="-"?"/react-nutritioncalculator/login":"/react-nutritioncalculator/profile"}>
+                    <Link to={userId==="-"?"/login":"/profile"}>
                         <div className="AddMenu">Add New Menu</div>
                     </Link>
                 </div>
@@ -495,7 +495,7 @@ function Home() {
                     </table>
                     {userId==="-"
                     ?
-                    <Link to="/react-nutritioncalculator/login">
+                    <Link to="/login">
                         <div className="SaveToFav">Save To Favorite List</div>
                     </Link>
                     :

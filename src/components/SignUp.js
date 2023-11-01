@@ -157,7 +157,7 @@ function SignUp() {
     }
 
     const clickLogIn = () => {
-        navigate('/react-nutritioncalculator/login')
+        navigate('/login')
     }
 
     return (

@@ -145,16 +145,6 @@ function Home() {
         setShowFavoriteLists(tempSearchFavoriteListBar)
     },[favoriteLists,searchFavoriteListBar])
 
-    useEffect(()=>{
-        if (favoriteLists?.length>0 && document.getElementById('favoriteList'+favoriteLists[0].Id) !== null) {
-            for(let i=0;i<favoriteLists.length&&favoriteLists.length>0;i++) {
-                if (document.getElementById('favoriteList'+favoriteLists[i].Id) !== null) {
-                    document.getElementById('favoriteList'+favoriteLists[i].Id).value = favoriteLists[i].Name
-                }
-            }
-        }
-    },[favoriteLists])
-
     const inputSearchMenuBar = (event) => {
         setSearchMenu(event.target.value)
     }
@@ -267,6 +257,10 @@ function Home() {
         setFavoriteListName(event.target.value)
     }
 
+    const clickFavoriteListName = (favoriteListId) => {
+        document.getElementById('favoriteList'+favoriteListId).value = (showFavoriteLists.filter(element=>element.Id===favoriteListId)[0]).Name
+    }
+
     const focusFavoriteListName = (favoriteListId) => {
         setFavoriteListName((showFavoriteLists.filter(element=>element.Id===favoriteListId)[0]).Name)
     }
@@ -276,6 +270,7 @@ function Home() {
             await apiUpdateFavoriteList(favoriteListId,{Name:favoriteListName})
             await apiGetFavoriteLists() 
         }
+        document.getElementById('favoriteList'+favoriteListId).value = await ""
     }
 
     const clickApplyFavoriteList = (favoriteListId) => {
@@ -528,7 +523,7 @@ function Home() {
                                 {showFavoriteLists?.map((element)=>{
                                     return (
                                         <tr key={element.Id}>
-                                            <td><input type='text' id={'favoriteList'+element.Id} onChange={inputFavoriteListName} onFocus={event=>focusFavoriteListName(element.Id)} onBlur={event=>checkChangingName(element.Id)}/></td>
+                                            <td><input type='text' placeholder={element.Name} id={'favoriteList'+element.Id} onChange={inputFavoriteListName} onClick={event=>clickFavoriteListName(element.Id)} onFocus={event=>focusFavoriteListName(element.Id)} onBlur={event=>checkChangingName(element.Id)}/></td>
                                             <td><span>{element.Menues}</span></td>
                                             <td><span>{element.Protein + " g."}</span></td>
                                             <td><span>{element.Fat + " g."}</span></td>

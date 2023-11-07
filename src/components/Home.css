@@ -776,6 +776,13 @@
         font-size: 20px;
         width: 180px;
         font-weight: lighter;
+        color: rgba(0, 0, 0, 0);
+        &::placeholder{
+            opacity: 1;
+        }
+        &:focus{
+            color: black;
+        }
     }
 }
 
